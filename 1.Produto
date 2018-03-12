@@ -1,0 +1,49 @@
+package Exerc;
+
+public class Produto {
+	private String nome;
+	private double preco;
+	private int quantidade;
+	private int minimo;
+	
+	void compraProduto(int quant) {
+		quantidade += quant; 
+	}
+	void vendeProduto(int quant) {
+		quantidade -= quant;
+	}
+	
+	
+	public String getNome() {
+		return nome; 
+	}
+	public double getPreco() {
+		return preco;
+	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public int getMinimo() {
+		return minimo;
+	}
+	
+	
+	void alterarNome(String nom) {
+		nome = nom;
+	}
+	void alterarPreco(double pre) {
+		preco = pre;
+	}
+	void alterarMinimo(int minim) {
+		minimo = minim;
+	}
+	
+	
+	//CONSTRUTOR
+	public Produto(String n, double p) {
+		nome = n;
+		preco = p;
+		quantidade = 0;
+		minimo = 10;
+	}
+}
