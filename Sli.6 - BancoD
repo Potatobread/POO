@@ -1,0 +1,32 @@
+package Slide;
+
+public class BancoD {
+	private Conta[] contas;
+	private Poupanca[] poupancas;
+	private int indicep, indicec = 0;
+	
+	void cadastroConta(Conta c) {
+		contas[indicec] = c;
+		indicec += 1;
+	}
+	
+	void cadastroPoupanca(Poupanca p) {
+		poupancas[indicep] = p;
+		indicep += 1;
+	}
+	
+	private Conta procuraConta(String n) {
+		int i = 0;
+		boolean achou = false;
+		while((!achou) && (i < indicec)) {
+			if(contas[i].getNumero() == n)
+				achou = true;
+			else
+				i += 1;
+		}
+		if(achou == true)
+			return contas[i];
+		else
+			return null;
+	}
+}
