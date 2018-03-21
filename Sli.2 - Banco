@@ -1,0 +1,39 @@
+package Slide;
+
+public class Banco {
+	private Conta[] contas;
+	private int indice = 0;
+	
+	void cadastro(Conta c) {
+		contas[indice] = c;
+		indice += 1;
+	}
+	
+	private Conta procurar(String n) {
+		int i = 0;
+		boolean achou = false;
+		while((!achou) && (i < indice)) {
+			if(contas[i].getNumero()==n)
+				achou = true;
+			else 
+				i += 1;
+		}
+		if(achou == true)
+			return contas[i];
+		else
+			return null;
+	}
+	
+	void debito(String num, double val) {
+		Conta c = this.procurar(num);
+		if(c != null)
+			c.debito(val);
+		else
+			System.out.println("Conta Inexistente!");
+	}
+	
+	//Construtor
+	Banco(){
+		contas = new Conta[50];
+	}
+}
