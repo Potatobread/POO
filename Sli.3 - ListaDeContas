@@ -1,0 +1,35 @@
+package Slide;
+
+public class ListaDeContas {
+	private Conta conta;
+	private ListaDeContas prox;
+	
+	void inserir(Conta c) {
+		if(this.conta == null) {
+			this.conta = c;
+			prox = new ListaDeContas();
+		} else
+			prox.inserir(c);
+	}
+	
+	void retirar(Conta c) {
+		if(conta != null) {
+			if(conta == c) {
+				this.conta = prox.conta;
+				this.prox = prox.prox;
+			} else
+				prox.retirar(c);
+		}
+	}
+	
+	Conta procurar(String num) {
+		if(conta == null) 
+			return null;
+		else {
+			if(conta.getNumero() == num)
+				return conta;
+			else
+				return prox.procurar(num);
+		}
+	}
+}
