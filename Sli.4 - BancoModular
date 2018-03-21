@@ -1,0 +1,17 @@
+package Slide;
+
+public class BancoModular {
+	private ListaDeContas contas;
+	
+	void cadastro(Conta c) {
+		contas.inserir(c);
+	}
+	
+	void debito(String num, double val) {
+		Conta c = contas.procurar(num);
+		if(c != null)
+			c.debito(val);
+		else
+			System.out.println("Conta inexistente!");
+	}
+}
