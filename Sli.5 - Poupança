@@ -1,0 +1,12 @@
+package Slide;
+
+public class Poupanca extends Conta{
+	void rendeJuros(double t) {
+		this.credito(this.getSaldo() * t);
+	}
+
+	//Construtor
+	Poupanca(String n) {
+		super(n);
+	}
+}
