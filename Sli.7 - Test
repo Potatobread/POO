@@ -1,0 +1,23 @@
+@Test
+	public void testarDepositoSaque() {
+		Conta c1 = new Conta(1);
+		Conta c2 = new Conta(2);
+		Conta c3 = new Conta(3);
+		
+		Banco b1 = new Banco();
+		b1.incluir(c3);
+		b1.incluir(c2);
+		b1.incluir(c1);
+		
+		b1.deposito(1,100);
+		b1.deposito(2,200);
+		b1.deposito(3,300);
+		
+		b1.saque(1,10);
+		b1.saque(2,10);
+		b1.saque(3,10);
+		
+		assertEquals(10,b1.saldo(1),0.0001);
+		assertEquals(190,b1.saldo(2),0.0001);
+		assertEquals(290,b1.saldo(3),0.0001);
+	}
