@@ -1,45 +1,51 @@
 package homework;
 
-public class Produto {
-	private String nome;
-	private double preco;
-	private int quantidade;
-	private int minimo;
-	
-	public String getNome() {
-		return nome;
-	}
-	public double getPreco() {
-		return preco;
-	}
-	public int getQuantidade() {
-		return quantidade;
-	}
-	public int getMinimo() {
-		return minimo;
+import homework.Produto;
+
+public class Estoque {
+	private Produto[] produtos;
+	private int i = 0;
+
+	public void comprarProduto(Produto p, int quant) {
+		produtos[i] = p;
+		produtos[i].comprar(quant);
+		i++;
 	}
 	
-	public void comprar(int quant) {
-		quantidade += quant;
+	private Produto procurar(String nome){
+		int j = 0;
+		boolean achou = false;
+		while((!achou) && (j < i)) {
+			if(produtos[j].getNome() == nome) 
+				achou = true;
+			else j++;
+		}
+		if(achou == true) {
+			System.out.println("J: " + j);
+			return produtos[j];
+		}	
+		else
+			return null;
 	}
-	public void vender(int quant) {
-		quantidade -= quant;
+	
+	public void venderProduto(String nome, int quant) {	
+		Produto p = this.procurar(nome);
+		if(p != null) {
+			if(quant > p.getQuantidade()) 
+				System.out.println("Quantidade Insuficiente");
+			else {
+				p.vender(quant);
+				if(p.getQuantidade() < p.getMinimo())
+					System.out.println("Produto precisa ser Reposto");
+			}
+		} else {
+			System.out.println("Não presente em Estoque");
+		}
 	}
-	void alterarNome(String nome) {
-		nome = this.nome;
-	}
-	void alterarPreco(double p) {
-		preco = p;
-	}
-	void alterarMinimo(int min) {
-		minimo = min;
-	}
+	
 	
 	//Construtor
-	Produto(String nome, double preco){
-		nome = this.nome;
-		preco = this.preco;
-		quantidade = 0;
-		minimo = 5;
+	Estoque(){
+		produtos = new Produto[20];
 	}
-}
+}	
