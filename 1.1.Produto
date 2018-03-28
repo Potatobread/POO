@@ -1,4 +1,4 @@
-package Exerc;
+package homework;
 
 public class Produto {
 	private String nome;
@@ -6,16 +6,8 @@ public class Produto {
 	private int quantidade;
 	private int minimo;
 	
-	void compraProduto(int quant) {
-		quantidade += quant; 
-	}
-	void vendeProduto(int quant) {
-		quantidade -= quant;
-	}
-	
-	
 	public String getNome() {
-		return nome; 
+		return nome;
 	}
 	public double getPreco() {
 		return preco;
@@ -27,23 +19,27 @@ public class Produto {
 		return minimo;
 	}
 	
-	
-	void alterarNome(String nom) {
-		nome = nom;
+	public void comprar(int quant) {
+		quantidade += quant;
 	}
-	void alterarPreco(double pre) {
-		preco = pre;
+	public void vender(int quant) {
+		quantidade -= quant;
 	}
-	void alterarMinimo(int minim) {
-		minimo = minim;
+	void alterarNome(String nome) {
+		nome = this.nome;
 	}
-	
-	
-	//CONSTRUTOR
-	public Produto(String n, double p) {
-		nome = n;
+	void alterarPreco(double p) {
 		preco = p;
+	}
+	void alterarMinimo(int min) {
+		minimo = min;
+	}
+	
+	//Construtor
+	Produto(String nome, double preco){
+		nome = this.nome;
+		preco = this.preco;
 		quantidade = 0;
-		minimo = 10;
+		minimo = 5;
 	}
 }
