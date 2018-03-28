@@ -1,80 +1,45 @@
-package Exerc;
+package homework;
 
-import Exerc.Produto;
-
-public class Estoque {
-	private Produto produto;
-	private Estoque prox;
+public class Produto {
+	private String nome;
+	private double preco;
+	private int quantidade;
+	private int minimo;
 	
-	void inserir(Produto p) {
-		if(produto == null) {
-			produto = p;
-			prox = new Estoque();
-		} else {
-			prox.inserir(p);
-		}
+	public String getNome() {
+		return nome;
 	}
-	
-	void retirar(Produto p) {
-		if(produto != null) {
-			if(produto == p) {
-				produto = prox.produto;
-				prox = prox.prox;
-			} else {
-				prox.retirar(p);
-			}
-		}
+	public double getPreco() {
+		return preco;
+	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public int getMinimo() {
+		return minimo;
 	}
 	
-	Produto procurar(String nome) {
-		if(produto == null) return null;
-		else {
-			if(produto.getNome() == nome) return produto;
-			else return prox.procurar(nome);
-		}
+	public void comprar(int quant) {
+		quantidade += quant;
+	}
+	public void vender(int quant) {
+		quantidade -= quant;
+	}
+	void alterarNome(String nome) {
+		nome = this.nome;
+	}
+	void alterarPreco(double p) {
+		preco = p;
+	}
+	void alterarMinimo(int min) {
+		minimo = min;
 	}
 	
-	void checarMinimo() {
-		if(produto == null) {
-			return;
-		} else {
-			if(produto.getQuantidade() < produto.getMinimo()) {
-				System.out.println(produto.getNome());
-			}
-		}
-	}
-	
-	void alterarNome(String antigo, String novo) {
-		if(produto == null) {
-			return;
-		} else {
-			if(produto.getNome() == antigo)
-				produto.alterarNome(novo);
-		}
-	}
-	void alterarPreço(String n, double novo) {
-		if(produto == null) {
-			return;
-		} else {
-			if(produto.getNome() == n)
-				produto.alterarPreco(novo);
-		}
-	}
-	void alterarMinimo(String n, int novo) {
-		if(produto == null) {
-			return;
-		} else {
-			if(produto.getNome() == n)
-				produto.alterarMinimo(novo);
-		}
-	}
-	void alterarQuant(String n, int quant) {
-		if(produto == null) {
-			return;
-		} else {
-			if(produto.getNome() == n)
-				produto.compraProduto(quant);
-			    produto.vendeProduto(quant);
-		}
+	//Construtor
+	Produto(String nome, double preco){
+		nome = this.nome;
+		preco = this.preco;
+		quantidade = 0;
+		minimo = 5;
 	}
 }
