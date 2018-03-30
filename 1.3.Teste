@@ -1,0 +1,54 @@
+package exercicio;
+
+import exercicio.*;
+
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+public class Teste {
+	Produto p1 = new Produto("arroz", 2.50);
+	Produto p2 = new Produto("feijao", 4.50);
+	Produto p3 = new Produto("macarrao", 6.50);
+	
+	Estoque es = new Estoque();
+	
+	
+	@Test
+	public void compraVendeProduto() {
+		es.comprarProduto(p1,10);
+		es.comprarProduto(p2,20);
+		es.comprarProduto(p3,30);
+		
+		assertEquals(p1.getQuantidade(),10);
+		assertEquals(p2.getQuantidade(),20);
+		assertEquals(p3.getQuantidade(),30);
+		
+		es.venderProduto("arroz", 5);
+		es.venderProduto("feijao", 10);
+		es.venderProduto("macarrao", 15);
+		
+		assertEquals(5,p1.getQuantidade());
+		assertEquals(10,p2.getQuantidade());
+		assertEquals(15,p3.getQuantidade());
+	}
+	@Test
+	public void mudarInfo() {
+		es.comprarProduto(p1,10);
+		
+		es.alterarNome(p1, "salada");
+		es.alterarPreco(p1, 4.00);
+		es.alterarMinimo(p1, 2);
+		
+		assertEquals("salada",p1.getNome());
+		assertEquals(4.00,p1.getPreco(),0.0001);
+		assertEquals(2,p1.getMinimo());
+	}
+	@Test
+	public void verificaEstoque() {
+		es.comprarProduto(p1,10);
+		es.alterarMinimo(p1, 9);
+		
+		assertEquals("Everything is good", es.verifica(p1));
+	}
+	
+}
