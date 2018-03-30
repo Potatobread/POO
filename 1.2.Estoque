@@ -1,51 +1,58 @@
-package homework;
+package exercicio;
 
-import homework.Produto;
+import exercicio.Produto;
 
 public class Estoque {
 	private Produto[] produtos;
-	private int i = 0;
+	private int indice = 0;
 
 	public void comprarProduto(Produto p, int quant) {
-		produtos[i] = p;
-		produtos[i].comprar(quant);
-		i++;
+		p.comprar(quant);
+		produtos[indice] = p;
+		indice += 1;
 	}
 	
-	private Produto procurar(String nome){
-		int j = 0;
-		boolean achou = false;
-		while((!achou) && (j < i)) {
-			if(produtos[j].getNome() == nome) 
-				achou = true;
-			else j++;
+	private int procurar(String n){
+		for(int i = 0; i < indice; i++) {
+			if(produtos[i].getNome() == n)
+				return i;
 		}
-		if(achou == true) {
-			System.out.println("J: " + j);
-			return produtos[j];
-		}	
-		else
-			return null;
+		return -1;
 	}
 	
-	public void venderProduto(String nome, int quant) {	
-		Produto p = this.procurar(nome);
-		if(p != null) {
-			if(quant > p.getQuantidade()) 
+	public void venderProduto(String nome, int quant) {
+		int j = procurar(nome);
+		if(j != -1) {
+		if(quant > produtos[j].getQuantidade()) 
 				System.out.println("Quantidade Insuficiente");
 			else {
-				p.vender(quant);
-				if(p.getQuantidade() < p.getMinimo())
+				produtos[j].vender(quant);
+				if(produtos[j].getQuantidade() < produtos[j].getMinimo())
 					System.out.println("Produto precisa ser Reposto");
 			}
-		} else {
+		} else
 			System.out.println("Não presente em Estoque");
-		}
 	}
 	
+	public void alterarNome(Produto p, String novo) {
+		p.alterarNome(novo);
+	}
+	public void alterarPreco(Produto p, double novo) {
+		p.alterarPreco(novo);
+	}
+	public void alterarMinimo(Produto p, int novo) {
+		p.alterarMinimo(novo);
+	}
+	
+	public String verifica(Produto p) {
+		if(p.getQuantidade() < p.getMinimo()) {
+			String resp = ("Repor Produto");
+			return resp;
+		} else return "Everything is good";
+	}
 	
 	//Construtor
 	Estoque(){
 		produtos = new Produto[20];
 	}
-}	
+}
