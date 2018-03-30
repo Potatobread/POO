@@ -1,4 +1,4 @@
-package homework;
+package exercicio;
 
 public class Produto {
 	private String nome;
@@ -6,39 +6,40 @@ public class Produto {
 	private int quantidade;
 	private int minimo;
 	
-	public String getNome() {
+	String getNome() {
 		return nome;
 	}
-	public double getPreco() {
+	double getPreco() {
 		return preco;
 	}
-	public int getQuantidade() {
+	int getQuantidade() {
 		return quantidade;
 	}
-	public int getMinimo() {
+	int getMinimo() {
 		return minimo;
 	}
 	
-	public void comprar(int quant) {
+	void comprar(int quant) {
 		quantidade += quant;
 	}
-	public void vender(int quant) {
+	void vender(int quant) {
 		quantidade -= quant;
 	}
-	void alterarNome(String nome) {
-		nome = this.nome;
+	
+	void alterarNome(String nom) {
+		nome = nom;
 	}
-	void alterarPreco(double p) {
-		preco = p;
+	void alterarPreco(double pre) {
+		preco = pre;
 	}
 	void alterarMinimo(int min) {
 		minimo = min;
 	}
 	
 	//Construtor
-	Produto(String nome, double preco){
-		nome = this.nome;
-		preco = this.preco;
+	Produto(String n, double p){
+		nome = n;
+		preco = p;
 		quantidade = 0;
 		minimo = 5;
 	}
